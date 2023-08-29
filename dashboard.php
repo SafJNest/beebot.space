@@ -50,15 +50,13 @@ session_start();
             })
                 .then(result => result.json())
                 .then(response => {
-                    console.log(response)
-                    //$(".guilds").append("<button>" + guild.name + "</button>");
                     let idsToCheck = "checkBeebot-"+userId+"-";
                     let ids ="";
                     response.forEach((guild) => {
                         if (guild.permissions == "2147483647")
                             ids += guild.id + "/";
                     });
-                    sendMsg(idsToCheck+ids)
+                    openSocket(idsToCheck+ids)
 
                 })
                 .catch(console.error);
