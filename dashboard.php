@@ -8,9 +8,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="../javascript/websocket.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+    <script src="../assets/js/websocket.js"></script>
+    <link rel="stylesheet" href="../assets/css/style-dashboard.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beebot</title>
 </head>
@@ -19,7 +19,7 @@ session_start();
     <div class="header">
         <div class="logo">
                 <div class="beebot-icon">
-                    <img class="beebot-logo" src="../beebot-removebg-preview.png"></img>
+                    <img class="beebot-logo" src="assets/img/beebot-removebg-preview.png"></img>
                 </div>
                 <div class="beebot-name">
                     Beebot
@@ -75,7 +75,7 @@ session_start();
             }
     </script>
     <?php
-        require __DIR__ . '/database.php';
+        require __DIR__ . '/assets/php/database.php';
         $data = $_SESSION['user_data'];
         $user_id = $data['id'];
         $token = $data['tokenType'];
