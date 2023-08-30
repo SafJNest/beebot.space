@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/css/style-home.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico" />
     
     <link
       rel="stylesheet"
@@ -398,9 +399,11 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/websocket.js"></script>
+    <script src="assets/js/functions.js"></script>
     <script>
       window.onload = () => {
-          openSocket("0","getHomeStats-0");
+          loadingBee();
+          openSocket("getHomeStats");
           const fragment = new URLSearchParams(window.location.hash.slice(1));
           const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
           if (!accessToken) {
@@ -416,7 +419,7 @@
               const {username, discriminator, id} = response;
               $.ajax({
                   type: 'POST',
-                  url: getBaseUrl() + '/assets/php/session.php',
+                  url: baseUrl() + '/assets/php/session.php',
                   data: {'response':response, 'accessToken':accessToken, 'tokenType':tokenType},
                   success: function(content) {
                       window.location.href = 'dashboard.php';
@@ -428,16 +431,9 @@
       };
 
       function redirectToDiscordLogin() {
-        window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=938487470339801169&redirect_uri=' + getBaseUrl() + '/&response_type=token&scope=identify%20guilds';
+        window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=938487470339801169&redirect_uri=' + baseUrl() + '/&response_type=token&scope=identify%20guilds';
       }
 
-      function getBaseUrl(){
-          let url = document.location.origin;
-          if(url.includes('localhost')){
-              url += '/phpmyadmin/safjweb';
-          }
-          return url;
-      }
   </script>
   </body>
 </html>

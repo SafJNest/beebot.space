@@ -1,7 +1,19 @@
-function base_url(){
+function baseUrl(){
     let url = document.location.origin;
-    if(url.includes('localhost')){
-        url += '/phpmyadmin/safjweb';
-    }
     return url;
+}
+
+function loadingBee(){
+    console.log("                                                      __            ");
+    console.log("                                                      // \\           ");
+    console.log("                                                      \\\\_\\/\\/       ");
+    console.log("                                     '-.._.-''-.._.. -(||)(')        ");
+    console.log("                                                       '''           ");
+
+    console.log("███████╗ █████╗ ███████╗   ██╗    ███╗   ██╗███████╗███████╗████████╗");
+    console.log("██╔════╝██╔══██╗██╔════╝   ██║    █████╗  ██║██╔════╝██╔════╝╚══██╔══╝");
+    console.log("███████╗███████║█████╗     ██║    ██╔██╗ ██║█████╗  ███████╗   ██║   ");
+    console.log("╚════██║██╔══██║██╔══╝██   ██║    ██║╚██╗██║██╔══╝  ╚════██║   ██║   ");
+    console.log("███████║██║  ██║██║   ╚█████╔╝    ██║ ╚████║███████╗███████║   ██║   ");
+    console.log("╚══════╝╚═╝  ╚═╝╚═╝    ╚════╝     ╚═╝  ╚═══╝╚══════╝╚══════╝   ╚═╝   ");
 }

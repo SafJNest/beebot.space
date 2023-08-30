@@ -1,14 +1,15 @@
 let socket;
-let id;
 
 
 
-function openSocket(id, msg){
+
+function openSocket(msg, id = 0){
     socket = new WebSocket("ws://192.99.45.100:8096/ws");
-    id = id;
-    
+
     socket.addEventListener("open", (event) => {
-        socket.send(msg+"-"+id);
+        let request = msg + "-" +id;
+        console.log("SENT: " + request);
+        socket.send(request);
 
     });
     socket.addEventListener("close", (event) => {
@@ -16,6 +17,7 @@ function openSocket(id, msg){
     });
     
     socket.onmessage = (event) => {
+        console.log("RECEIVED: " + event.data);
         if(event.data.startsWith("server_list")){
             let json = JSON.parse(customSplitByCharacter(event.data, "-", 2)[1]);
             for(let i = 0; i < json.length; i++){
@@ -51,7 +53,6 @@ function openSocket(id, msg){
             
            
         }else if(event.data.startsWith("getHomeStats")){
-            console.log(event.data)
             let json = JSON.parse(customSplitByCharacter(event.data, "-", 2)[1]);
             $('#servers').html(json['cont_guilds']);
             $('#users').html(json['cont_user']);

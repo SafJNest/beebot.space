@@ -8,7 +8,9 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="../assets/js/script.js"></script>
     <script src="../assets/js/websocket.js"></script>
+    <script src="../assets/js/functions.js"></script>
     <link rel="stylesheet" href="../assets/css/style-dashboard.css">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +21,7 @@ session_start();
     <div class="header">
         <div class="logo">
                 <div class="beebot-icon">
-                    <img class="beebot-logo" src="assets/img/beebot-removebg-preview.png"></img>
+                    <img class="beebot-logo" src="../assets/img/beebot-removebg-preview.png"></img>
                 </div>
                 <div class="beebot-name">
                     Beebot
@@ -50,13 +52,14 @@ session_start();
             })
                 .then(result => result.json())
                 .then(response => {
-                    let idsToCheck = "checkBeebot-"+userId+"-";
+                    let request = "checkBeebot-"+userId+"-";
                     let ids ="";
                     response.forEach((guild) => {
                         if (guild.permissions == "2147483647")
                             ids += guild.id + "/";
                     });
-                    openSocket(idsToCheck+ids)
+                    request += ids;
+                    openSocket(request);
 
                 })
                 .catch(console.error);
@@ -73,6 +76,7 @@ session_start();
                 }
                 return url;
             }
+
     </script>
     <?php
         require __DIR__ . '/assets/php/database.php';
