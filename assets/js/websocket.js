@@ -3,11 +3,11 @@ let socket;
 
 
 
-function openSocket(msg, id = 0){
-    socket = new WebSocket("ws://192.168.3.114:8096/ws");
+function openSocket(msg){
+    socket = new WebSocket("ws://192.168.1.11:8096/ws");
 
     socket.addEventListener("open", (event) => {
-        let request = msg + "-" +id;
+        let request = msg;
         console.log("SENT: " + request);
         socket.send(request);
 

@@ -11,6 +11,10 @@ session_start();
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/websocket.js"></script>
     <script src="../assets/js/functions.js"></script>
+    <link rel="stylesheet" href="../assets/css/bulma.min.css" />
+    <link rel="stylesheet" href="../assets/css/style-home.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
     <link rel="stylesheet" href="../assets/css/style-dashboard.css">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,17 +22,67 @@ session_start();
 </head>
 
 <body>
-    <div class="header">
-        <div class="logo">
-                <div class="beebot-icon">
-                    <img class="beebot-logo" src="../assets/img/beebot-removebg-preview.png"></img>
-                </div>
-                <div class="beebot-name">
-                    Beebot
-                </div>
+        <!-- Navbar Start -->
+        <nav
+      class="navbar is-fixed-top"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand mt-2 mb-2">
+        <a class="navbar-item" href="#">
+          <img src="../assets/img/beebot-b.png"></img>
+        </a>
+
+        <a
+          role="button"
+          class="navbar-burger has-text-white"
+          data-target="navMenu"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="#" class="navbar-item is-tab">
+            Home
+          </a>
+
+          <a href="#features" class="navbar-item is-tab">
+            Features
+          </a>
+
+          <a href="#stats" class="navbar-item is-tab">
+            Stats
+          </a>
+
+          <a href="#" class="navbar-item is-tab">
+            Docs
+          </a>
+        </div>
+
+        <div class="navbar-end">
+          <a href="#" class="navbar-item is-tab" target="_blank">
+            <i class="fa-brands fa-discord"></i>
+          </a>
+
+          <a href="#" class="navbar-item is-tab" target="_blank">
+            <i class="fa-brands fa-github"></i>
+          </a>
+
+          <div class="navbar-item">
+            <div class="buttons">
+                <?=printUser();?>
             </div>
-        <?=printUser();?>
-    </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <div class="container">
         <div>
             <h1 id="name">
@@ -44,7 +98,6 @@ session_start();
     </div>
     <script>
         async function load(userId, token, accessToken) {
-            openSocket(userId);
             fetch("https://discord.com/api/users/@me/guilds", {
                 headers: {
                     authorization: `${token} ${accessToken}`,
@@ -52,13 +105,12 @@ session_start();
             })
                 .then(result => result.json())
                 .then(response => {
-                    let request = "checkBeebot-"+userId+"-";
                     let ids ="";
                     response.forEach((guild) => {
                         if (guild.permissions == "2147483647")
                             ids += guild.id + "/";
                     });
-                    request += ids;
+                    let request = '{"request":"server_list","ids":"'+ ids +'"}';
                     openSocket(request);
 
                 })

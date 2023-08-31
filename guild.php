@@ -45,19 +45,21 @@ session_start();
         </div>
 
         <script>
-            window.onload = () => {
-                let guildId = <?=$_SESSION['guild_id'];?>;
-                let userId = <?=  $_SESSION['user_data']['id']; ?>;
+            var guildId;
+            var userId;
+            function load(guild_id, user_id){
+                guildId = guild_id;
+                userId =  user_id;
                 loadingBee();
                 
-                console.log(guildId)
-                openSocket("getPrefix-" + guildId);
-            
-            };
+                let request = '{"request":"getPrefix","guildId":"'+ guildId +'"}';
+                openSocket(request);
+            }
 
             function commit(){
                 let prefix = $('#newPrefix').val();
-                openSocket("newPrefix-" + guildId + "-" + prefix);
+                let request = '{"request":"newPrefix","guildId":"'+ guildId +'","userId":"'+ userId +'","prefix":"'+ prefix +'"}';
+                openSocket(request);
             }
 
         </script>
@@ -70,12 +72,11 @@ session_start();
     require __DIR__ . '/assets/php/database.php';
     $guild_id =  $_GET['id'];
     $_SESSION['guild_id'] = $guild_id;
-    echo $_SESSION['guild_id'];
     $data = $_SESSION['user_data'];
     $user_id = $data['id'];
     $token = $data['tokenType'];
     $accessToken = $data['accessToken'];
-    echo '<script>load("'. $user_id .'", "'. $token .'", "'. $accessToken .'");</script>';
+    echo '<script>load("'. $guild_id .'", "'. $user_id .'");</script>';
 
     function printUser(){
         $icon_url = 'https://cdn.discordapp.com/avatars/'. $_SESSION['user_data']['id'] .'/'. $_SESSION['user_data']['avatar'] .'.png';
