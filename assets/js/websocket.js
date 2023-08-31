@@ -4,7 +4,7 @@ let socket;
 
 
 function openSocket(msg, id = 0){
-    socket = new WebSocket("ws://192.99.45.100:8096/ws");
+    socket = new WebSocket("ws://192.168.3.114:8096/ws");
 
     socket.addEventListener("open", (event) => {
         let request = msg + "-" +id;
@@ -57,6 +57,16 @@ function openSocket(msg, id = 0){
             $('#servers').html(json['cont_guilds']);
             $('#users').html(json['cont_user']);
             $('#commands').html(json['cont_command']);
+        }else if(event.data.startsWith("getPrefix")){
+            let json = JSON.parse(customSplitByCharacter(event.data, "-", 2)[1]);
+            $('.prefix').html(json['prefix']);
+        }else if(event.data.startsWith("newPrefix")){
+            let a = customSplitByCharacter(event.data, "-", 2)[1];
+            if(a == 'ok'){
+                alert("ye!");
+            }else{
+                alert("!ye");
+            }
         }
         socket.close();
     };

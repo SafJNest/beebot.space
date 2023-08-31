@@ -66,7 +66,7 @@ session_start();
         }
 
         function loadGuild(id){
-            window.location.href =id;
+            window.location.href = '/dashboard/' + id;
         }
 
         function base_url(){
