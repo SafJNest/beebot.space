@@ -1,10 +1,10 @@
-let socket;
+
 
 
 
 
 function openSocket(msg){
-    socket = new WebSocket("ws://192.168.1.11:8096/ws");
+    let socket = new WebSocket("ws://192.99.45.100:8096/ws");
 
     socket.addEventListener("open", (event) => {
         let request = msg;

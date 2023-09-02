@@ -118,18 +118,12 @@ session_start();
         }
 
         function loadGuild(id){
-            window.location.href = '/dashboard/' + id;
+            window.location.href = '/dashboard/' + id+'/home';
         }
 
-        function base_url(){
-                let url = document.location.origin;
-                if(url.includes('localhost')){
-                    url += '/phpmyadmin/safjweb';
-                }
-                return url;
-            }
-
     </script>
+
+
     <?php
         require __DIR__ . '/assets/php/database.php';
         $data = $_SESSION['user_data'];
@@ -153,6 +147,8 @@ session_start();
             ';
         }
     ?>
+
+    
 </body>
 
 </html>

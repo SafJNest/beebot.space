@@ -44,5 +44,32 @@ function getGuildSettings($guild_id) {
   }
 }
 
+function getWelcomeMessage($guild_id) {
+  global $conn;
+  global $beebot;
+
+  $arr = [];
+  $sql = "SELECT message_text, channel_id FROM welcome_message WHERE guild_id = $guild_id AND bot_id = $beebot";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $arr = ['message'=>$row["message_text"], 'channel'=>$row["channel_id"]];
+    }
+  }
+
+  $sql = "SELECT role_id FROM welcome_roles WHERE guild_id = $guild_id AND bot_id = $beebot";
+  $result = $conn->query($sql);
+
+  $roles = [];
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $roles[$row['role_id']] = ['role_id'=>$row['role_id']];
+    }
+  }
+  return $arr + ['roles'=>$roles];
+}
+
+
 //$conn->close();
 ?>
