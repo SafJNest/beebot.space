@@ -112,3 +112,12 @@ table {
   border-collapse: collapse;
   height: 103px;
 }
+
+
+
+.section{
+  box-sizing: border-box;
+  background: rgb(17,17,17);
+  padding: 20px;
+  border-radius: 10px;
+}

@@ -13,4 +13,10 @@ function print_html($string, $return = false, $nesting_level = 0)
     echo $out;
 }
 
+
+function timestamp_unix($date){
+    $datetime = $date;
+    return strtotime($datetime);
+}
+
 ?>

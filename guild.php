@@ -14,11 +14,17 @@ echo "DIOCANE ".$page;
     <head>
         <meta charset="UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         <script src="/assets/js/script.js"></script>
         <script src="/assets/js/websocket.js"></script>
         <script src="/assets/js/functions.js"></script>
+
         <link rel="stylesheet" href="/assets/css/style-dashboard.css">
+
         <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Beebot</title>
     </head>

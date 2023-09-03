@@ -70,6 +70,28 @@ function getWelcomeMessage($guild_id) {
   return $arr + ['roles'=>$roles];
 }
 
+function getCommand($guild_id, $date, $user = null) {
+  global $conn;
+  global $beebot;
+
+  $query_add = "";
+  if($user != null){
+    $query_add = "AND user_id = $user";
+  }
+
+  $arr = [];
+  $sql = "select * from command_analytic where guild_id = $guild_id  $query_add";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $arr[strtotime("0:00", timestamp_unix($row['time']))][] = $row['name'];
+    }
+  }
+
+  return $arr;
+}
+
 
 //$conn->close();
 ?>

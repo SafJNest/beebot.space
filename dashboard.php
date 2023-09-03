@@ -17,6 +17,7 @@ session_start();
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
     <link rel="stylesheet" href="../assets/css/style-dashboard.css">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beebot</title>
 </head>
