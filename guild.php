@@ -35,7 +35,7 @@ echo "DIOCANE ".$page;
             <a id="sidebar" data-page="prefix">Prefix</a>
             <a id="sidebar" data-page="welcome">Welcome Message</a>
             <a id="sidebar" data-page="goodbye">Goodbye Message</a>
-            <a id="sidebar" data-page="prefix">Levels</a>
+            <a id="sidebar" data-page="levels">Levels</a>
         </div>
         <div class="page-container">
             <div class="header">

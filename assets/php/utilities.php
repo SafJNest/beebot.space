@@ -1,5 +1,15 @@
 <?php
 
+
+/**
+ * 
+ *
+ * @param [type] $string
+ * @param boolean $return
+ * @param integer $nesting_level
+ * @return void
+ * @author notSunyxButStolenAtWork
+ */
 function print_html($string, $return = false, $nesting_level = 0)
 {
     $trace = debug_backtrace();

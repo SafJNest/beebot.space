@@ -8,7 +8,7 @@ $data = $_SESSION['user_data'];
 $user_id = $data['id'];
 $guild = $_SESSION['guild_id'];
 
-$result = getWelcomeMessage($guild);
+$result = getLevelsData($guild);
 print_html($result);
 
 
